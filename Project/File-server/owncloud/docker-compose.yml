@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  owncloud:
+    image: owncloud
+    restart: always
+    ports:
+      - 42069:80
+    volumes:
+      - ~/owncloud_data:/var/www/html
+      - ~/owncloud_data/apps:/var/www/html/apps
+      - ~/owncloud_data/config:/var/www/html/config
+      - ~/owncloud_data/data:/var/www/html/data
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: bnssgroupseven
