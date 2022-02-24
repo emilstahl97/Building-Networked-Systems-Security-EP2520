@@ -30,7 +30,6 @@ include $RULE_PATH/standard-rules/pop2.rules
 include $RULE_PATH/standard-rules/shellcode.rules        
 include $RULE_PATH/standard-rules/virus.rules            
 include $RULE_PATH/standard-rules/web-iis.rules
-include $RULE_PATH/standard-rules/cgi-bin.list           
 include $RULE_PATH/standard-rules/experimental.rules     
 include $RULE_PATH/standard-rules/imap.rules             
 include $RULE_PATH/standard-rules/nntp.rules             
