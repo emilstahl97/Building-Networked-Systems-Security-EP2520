@@ -1,4 +1,3 @@
-Makefile.am            
 ddos.rules             
 finger.rules           
 misc.rules             
