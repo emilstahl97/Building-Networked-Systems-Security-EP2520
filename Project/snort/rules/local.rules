@@ -3,6 +3,8 @@
 # --- Ping ICMP Rules ---
 #alert icmp any any -> 192.168.1.26 any (msg:"Pinging..."; sid:1000001;)
 #alert icmp $HOME_NET any -> any any (msg:"Pinging..."; sid:1000001;)
+
+# Monitor ICMP with dst IP of our internal network
 alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"Pinging..."; sid:1000001;)
 #alert icmp $HOME_NET any -> any any (msg:"Pinging..."; sid:1000001;)
 
