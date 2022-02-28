@@ -14,7 +14,7 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET 21 (msg:"FTP failed login"; content:"Lo
 
 
 # --- SSH Rules ---
-alert tcp $EXTERNAL_NET any -> $HOME_NET 22 (msg:"SSH incoming"; flow:stateless; flags:S+; sid:100006927; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET $SSH_PORTS (msg:"SSH incoming"; flow:stateless; flags:S+; sid:100006927; rev:1;)
 
 
 #alert tcp any any -> any 6667 (msg:"IRC protocol traffic";sid:1000005;)
