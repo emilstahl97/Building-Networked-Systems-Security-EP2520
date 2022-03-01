@@ -16,6 +16,16 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET $FTP_PORTS (msg:"FTP failed login"; con
 # --- SSH Rules ---
 alert tcp $EXTERNAL_NET any -> $HOME_NET $SSH_PORTS (msg:"SSH incoming"; flow:stateless; flags:S+; sid:100004; rev:1;)
 
+# --- SSH Brutedforce attempts ---
+alert tcp any any -> $HOME_NET 22 (msg:"Potential SSH Brute Force Attack"; \
+ flow:to_server; \
+ flags:S; \
+ threshold:type threshold, track by_src, count 3, seconds 60; \
+ classtype:attempted-dos; \
+ sid:2001219; \
+ rev:4; resp:rst_all; \
+ )
+
 
 #alert tcp any any -> any 6667 (msg:"IRC protocol traffic";sid:1000005;)
 #alert tcp any 6667 -> any any (msg:"C&C Server sent netinfo command";content:"!netinfo";sid:1000006;)
