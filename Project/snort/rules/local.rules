@@ -1,12 +1,10 @@
-# --- Local Rules ---
+# --- Local Rules for Building Networked Systems Security EP2520 ---
 
 # --- Ping ICMP Rules ---
-#alert icmp any any -> 192.168.1.26 any (msg:"Pinging..."; sid:1000001;)
-#alert icmp $HOME_NET any -> any any (msg:"Pinging..."; sid:1000001;)
 
 # Monitor ICMP with dst IP of our internal network
 alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"Pinging..."; sid:1000001;)
-#alert icmp $HOME_NET any -> any any (msg:"Pinging..."; sid:1000001;)
+
 
 # --- FTP Rules ---
 alert tcp $EXTERNAL_NET any -> $HOME_NET $FTP_PORTS (msg:"FTP connection attempt"; sid:1000002; rev:1;)
@@ -14,15 +12,7 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET $FTP_PORTS (msg:"FTP failed login"; con
 
 
 # --- SSH Rules ---
-alert tcp $EXTERNAL_NET any -> $HOME_NET $SSH_PORTS (msg:"SSH incoming"; flow:stateless; flags:S+; sid:100004; rev:1;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET $SSH_PORTS (msg:"SSH incoming"; flow:stateless; flags:S+; sid:1000004; rev:1;)
 
 # --- SSH Brutedforce attempts ---
-alert tcp any any -> $HOME_NET 22 (msg:"Potential SSH Brute Force Attack"; flow:to_server; flags:S; threshold:type threshold, track by_src, count 3, seconds 60; classtype:attempted-dos; sid:2001219; rev:4; resp:rst_all;)
-
-
-
-#alert tcp any any -> any 6667 (msg:"IRC protocol traffic";sid:1000005;)
-#alert tcp any 6667 -> any any (msg:"C&C Server sent netinfo command";content:"!netinfo";sid:1000006;)
-#alert tcp any 6667 -> any any (msg:"C&C Server sent sysinfo command";content:"!sysinfo";sid:1000007;)
-#alert tcp any 6667 -> any any (msg:"C&C Server sent port scan command";content:"!scan";sid:1000008;)
-#alert tcp any 6667 -> any any (msg:"C&C Server sent download command";content:"!download";sid:1000009;)
+alert tcp any any -> $HOME_NET 22 (msg:"Potential SSH Brute Force Attack"; flow:to_server; flags:S; threshold:type threshold, track by_src, count 3, seconds 60; classtype:attempted-dos; sid:1000005; rev:4; resp:rst_all;)
