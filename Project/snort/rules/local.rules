@@ -14,5 +14,6 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET $FTP_PORTS (msg:"FTP failed login"; con
 # --- SSH Rules ---
 alert tcp $EXTERNAL_NET any -> $HOME_NET $SSH_PORTS (msg:"SSH incoming"; flow:stateless; flags:S+; sid:1000004; rev:1;)
 
+
 # --- SSH Brutedforce attempts ---
 alert tcp any any -> $HOME_NET 22 (msg:"Potential SSH Brute Force Attack"; flow:to_server; flags:S; threshold:type threshold, track by_src, count 3, seconds 60; classtype:attempted-dos; sid:1000005; rev:4; resp:rst_all;)
