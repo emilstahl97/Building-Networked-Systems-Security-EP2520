@@ -27,4 +27,21 @@ The script must be sourced with the command
 ```bash
 source ./.bashrc
 ```
-The current speci
+Once sourced, the current specification is tested with the ```bash $ testsnort``` command. The output shows number of applied rules and the status of current configuration. 
+
+To start the Snort IDS, execute the command ```bash runsnort ```. 
+The IDS can also be started explicitely with the following command:
+```bash 
+snort -A console -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp1s0
+```
+
+N O T E: 
+Make sure to specicy the correct network interface to listen on. Either in the alias of .bashrc or in the command above. The default command is enp1s0. The interface is specified with the -i flag. 
+
+
+
+
+
+
+
+
