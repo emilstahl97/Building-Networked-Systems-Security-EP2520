@@ -18,7 +18,7 @@ where --net-host is needed to analyze traffic on the host machines interfaces.
 Once in the container, the entrypoint is in the ./Snort directory where two directories are present, ./etc and ./rules. 
 In ./etc the snort.conf is located where the user can specify the subnet of which to analyze traffic. This is specified at line 45 and is predefined to 
 ```bash
-ipvar HOME_NET 192.168.1.0/24. 
+ipvar HOME_NET 192.168.1.0/24
 ```
 Furthermore, one can specify which IP range the EXTERNAL_NET shall correspond to, the default is the inverse of the HOME_NET, meaning all adresses except the HOME_NET.
 
