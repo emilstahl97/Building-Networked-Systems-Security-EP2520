@@ -38,8 +38,12 @@ snort -A console -c /root/Building-Networked-Systems-Security-EP2520/Project/sno
 N O T E: 
 Make sure to specicy the correct network interface to listen on. Either in the alias of .bashrc or in the command above. The default command is enp1s0. The interface is specified with the -i flag. 
 
+As defalt writes alerts to the console. To write to log file, execute:
 
-
+```bash 
+snort -A console -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp1s0 >> /var/log/snort/snort.log
+```
+Alternatively, remove the "-A console" from the command. 
 
 
 
