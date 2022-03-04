@@ -61,6 +61,8 @@ Alternatively, remove the "-A console" from the command.
 
 ## Commmon alerts
 
+Below, some common alerts are shown including SSH connection attempts, ICMP requests, Port scannings, FTP connections, and SSH Brute Force Attack. 
+
 ```bash
 03/04-16:41:28.802112  [**] [1:1000004:1] SSH incoming [**] [Priority: 0] {TCP} 192.168.1.2:55338 -> 192.168.1.26:22
 03/04-16:41:28.805635  [**] [1:628:8] SCAN nmap TCP [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.1.2:55338 -> 192.168.1.26:22
