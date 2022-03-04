@@ -47,7 +47,7 @@ Once sourced, the current specification is tested with the ```bash $ testsnort``
 
 ### Run Snort
 
-To start the Snort IDS, execute the command ```bash runsnort ```. 
+To start the Snort IDS, execute the command ```bash $ runsnort ```. 
 The IDS can also be started explicitly with the following command:
 ```bash 
 snort -A console -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp1s0
