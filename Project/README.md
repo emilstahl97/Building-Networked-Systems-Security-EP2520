@@ -4,7 +4,10 @@ For more clear explanation, we consider that our internal network where everythi
 
 ## SETTING UP THE ROUTER WITH DD-WRT:
 
-We flush the routers and we install dd+wrt. THOMAS ADD STUFF HERE
+We flush the routers and we install dd+wrt. 
+
+# THOMAS ADD STUFF HERE
+
 After we set everything up and change the networks provided, we need to go to **services->wireless** security and pick **wpa2-eap**, add the IP **192.168.9.10** in the FreeRadius one (leave the default port and default encryption method) and for the secret use.
 
 ## DOCKER-ENGINE AND DOCKER COMPOSE
