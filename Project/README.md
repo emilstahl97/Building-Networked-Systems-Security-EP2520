@@ -287,7 +287,7 @@ where --net-host is needed to analyze traffic on the host machines interfaces.
 
 ### Snort configuration 
 
-Once in the container, the entrypoint is in the ./Snort directory where two directories are present, [./etc](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/etc) and [./rules].(https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/rules) 
+Once in the container, the entrypoint is in the ./Snort directory where two directories are present, [./etc](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/etc) and [./rules](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/rules) 
 In ./etc the snort.conf is located where the user can specify the subnet of which to analyze traffic. This is specified at line 45 and is predefined to 
 ```bash
 ipvar HOME_NET 192.168.9.0/24
@@ -299,18 +299,19 @@ When deploying this image on another network than initially attended, make sure 
 
 ### Applied rules
 
-In ./rules the local.rules file is located which includes site specific rules such as:
+In [./rules](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/rules) the local.rules file is located which includes site specific rules such as:
 
 * ICMP requests originating from the $EXTERNAL_NET with destination matching the $HOME_NET
 * FTP connection attempts
 * SSH connections from the $EXTERNAL_NET
 * Potential bruteforce attacks due to three failed SSH authentications during the last 60 seconds originating from any IP-adress, including $HOME_NET.
 
-In .snort/rules/standard-rules/, various other rule files are located with the purpose of analyzing situations such as malicious port scannings, ddos attacks, SQL injections, dns lookups, and NTP. All .rules files are included in the ./etc/snort.conf file. 
+In [.snort/rules/standard-rules/](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/rules/standard-rules), various other rule files are located with the purpose of analyzing situations such as malicious port scannings, ddos attacks, SQL injections, dns lookups, and NTP. All .rules files are included in the ./etc/snort.conf file. 
 
 ### Test Snort configuration
 
-To test and run the configuration, a .bashrc script is provided in .snort/.bashrc. 
+To test and run the configuration, a [.bashrc](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/.bashrc) script is provided in [.snort/.bashrc](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/.bashrc).
+ 
 The script must be sourced with the command 
 ```bash
 source ./.bashrc
