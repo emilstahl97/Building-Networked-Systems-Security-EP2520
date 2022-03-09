@@ -292,19 +292,19 @@ In ./etc the snort.conf is located where the user can specify the subnet of whic
 ```bash
 ipvar HOME_NET 192.168.9.0/24
 ```
-Furthermore, one can specify which IP range the EXTERNAL_NET shall correspond to, the default is the inverse of the HOME_NET, meaning all adresses except the HOME_NET.
+Furthermore, one can specify which IP range the $EXTERNAL_NET shall correspond to, the default is the inverse of the $HOME_NET, meaning all adresses except the $HOME_NET.
 
 #### N O T E: 
-When deploying this image on another network than initially attended, make sure to update HOME_NET and EXTERNAL_NET accordingly.
+When deploying this image on another network than initially attended, make sure to update $HOME_NET and $EXTERNAL_NET accordingly.
 
 ### Applied rules
 
 In ./rules the local.rules file is located which includes site specific rules such as:
 
-* ICMP requests originating from the EXTERNAL_NET with destination matching the HOME_NET
+* ICMP requests originating from the $EXTERNAL_NET with destination matching the $HOME_NET
 * FTP connection attempts
-* SSH connections from the EXTERNAL_NET
-* Potential bruteforce attacks due to three failed SSH authentications during the last 60 seconds originating from any IP-adress, including HOME_NET.
+* SSH connections from the $EXTERNAL_NET
+* Potential bruteforce attacks due to three failed SSH authentications during the last 60 seconds originating from any IP-adress, including $HOME_NET.
 
 In .snort/rules/standard-rules/, various other rule files are located with the purpose of analyzing situations such as malicious port scannings, ddos attacks, SQL injections, dns lookups, and NTP. All .rules files are included in the ./etc/snort.conf file. 
 
@@ -350,6 +350,4 @@ Below, some common alerts are shown including SSH connection attempts, ICMP requ
 03/04-16:42:18.397314  [**] [1:1000005:4] Potential SSH Brute Force Attack [**] [Classification: Attempted Denial of Service] [Priority: 2] {TCP} 192.168.9.2:55860 -> 192.168.9.26:22
 03/04-16:42:18.606497  [**] [1:1421:11] SNMP AgentX/tcp request [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.9.2:56020 -> 192.168.9.26:705
 03/04-16:42:18.827199  [**] [1:618:10] SCAN Squid Proxy attempt [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.9.2:56207 -> 192.168.9.26:3128
-```
-
-
+``` 
