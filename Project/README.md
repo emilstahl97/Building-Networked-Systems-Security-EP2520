@@ -94,7 +94,7 @@ Also, if we consider that our PWD is **/home/myuser**, we create a new directory
 Now, we run the command
 
 ```bash 
-Docker run -h server.final.test --name my-group-server -p 53:53/udp -p 53:53 -p 80:80 -p 443:443 -p 389:389 -p 636:636 -p 88:88 -p 464:464 -p 88:88/udp -p 464:464/udp -p 123:123/udp -v /sys/fs/cgroup:/fs/cgroup:ro -v /var/lib/ipa-data:/data:Z -e PASSWORD=Secret123 –sysctl net.ipv6.conf.all.disable_ipv6=0 freeipa/freeipa-server:centros-8-4.8.7 ipa-server-install -U -r FINAL.TEST --no-ntp
+docker run -h server.final.test --name my-group-server -p 53:53/udp -p 53:53 -p 80:80 -p 443:443 -p 389:389 -p 636:636 -p 88:88 -p 464:464 -p 88:88/udp -p 464:464/udp -p 123:123/udp -v /sys/fs/cgroup:/fs/cgroup:ro -v /var/lib/ipa-data:/data:Z -e PASSWORD=Secret123 –sysctl net.ipv6.conf.all.disable_ipv6=0 freeipa/freeipa-server:centros-8-4.8.7 ipa-server-install -U -r FINAL.TEST --no-ntp
 ```
 
 There might be a problem of port 53 already being used due to DNS and the docker command won’t run. To fix that in Ubuntu, do the following: 
