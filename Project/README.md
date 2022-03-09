@@ -1,5 +1,12 @@
 # ACME Network Setup
 
+##### Table of Contents  
+[Headers](#headers)  
+[Emphasis](#emphasis)  
+...snip...    
+<a name="headers"/>
+## Headers
+
 For more clear explanation, we consider that our internal network where everything is set up is the **192.168.9.0/24** network and the IP of the server for the containers is **192.168.9.10**. Also, the FreeIPA server, i.e the container that is going to run on the host pc, is going to be named **server.final.test** and the domain is of course final.test. The host machine runs UBUNTU 20.4 but since we run almost everything in containers, few things should change in the configurations below, which will be noted if there is a difference in other Unix distributions.
 
 ## SETTING UP THE ROUTER WITH DD-WRT:
