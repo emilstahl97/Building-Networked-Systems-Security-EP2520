@@ -7,6 +7,29 @@ For more clear explanation, we consider that our internal network where everythi
 We flush the routers and we install dd+wrt. THOMAS ADD STUFF HERE
 After we set everything up and change the networks provided, we need to go to **services->wireless** security and pick **wpa2-eap**, add the IP 1**92.168.9.10** in the FreeRadius one (leave the default port and default encryption method) and for the secret use.
 
+## DOCKER-ENGINE AND DOCKER COMPOSE
+
+We install both so anyone can either chose to install every container either with docker run commands ( like we did ) or use a Dockerfile and use the docker compose up command. To install docker engine first go to the docker docs official site and follow the instructions for your distributions.
+
+For Ubuntu Linux we do:
+
+```bash 
+$ sudo apt-get update
+
+$ sudo apt-get install ca-certificates curl gnupg lsb-release
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-
+archive-keyring.gpg] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+$ sudo apt-get update
+
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+
+
 
 ## Intrusion Detection System - Snort
 
