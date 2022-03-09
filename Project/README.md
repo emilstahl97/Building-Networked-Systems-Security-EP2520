@@ -63,7 +63,7 @@ $ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docke
 
 $ sudo chmod +x /usr/local/bin/docker-compose
 
-$sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 
 And to confirm you should get a result with the command:
