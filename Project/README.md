@@ -157,8 +157,35 @@ Freeradius should run and show ready to process requests. Now, we need to add us
 ```
 Then stop the service and rerun it as before. If the router is set up properly and you followed the instructions, you should be able to connect to the wifi with your username and password.
  
-
+## OpenVPN Access Server
  
+Firstly, lets download the appropriate image. Go to /home/alex and do docker pull linuxserver/openvpn-as. Also, create a directory here with mkdir vpn-data. Moreover, go to the router with dd-wrt and firstly,notice the public IP that it has and also allow port forwarding for UDP port 1194. Now, go back to the host machine and run the command:
+ 
+ ```bash
+docker run \
+--name=openvpn-as \
+--cap-add=NET_ADMIN \
+-e PUID=1000 \
+-e PGID=1000 \
+-e TZ=Europe/London \ ##change that to your area, for me its Europe/Stockholm
+-e INTERFACE=eth0 `#optional` \
+-p 943:943 \
+-p 9443:9443 \
+-p 1194:1194/udp \
+-v /home/alex/vpn-data:/config \
+--restart unless-stopped \
+ghcr.io/linuxserver/openvpn-as
+```
+ 
+and now you can go to http://localhost:943/admin and you will be prompted to connect as an admin. The default settings are admin/password so go there. Go to configuration->network settings and in hostname or IP address, add the public IP of the router,
+pick UDP as a protocol, use port number 1194 then save settings on the bottom of the page and update running router on the top of the page.
+
+Then go to VPN settings and in the routing part, add in the box the address of your private network, i.e 192.168.9.0/24. Save and update again. Go to authentication and pick ldap and then go to the ldap file and add the appropriate configurations just like in nextcloud. Don’t add in the first box the uid=admin one but add uid in the box that has prefilled the SambaAccounts. Also in the base dn in the bottom, put cn=accounts,dn=final,dn=test. Save and update.
+
+Now, you can log out as admin, go to http://192.168.9.10 and here you can connect as a user from freeipa. Log in and download the file that it has for you. Now, to connect to the vpn from your phone for example, send this file to your phone ( with a mail for example), download the OpenVPN connect command and import that file there. Use your password ( and OTP if you have 2FA on) and you should be able to connect to the VPN. With all these done, you can connect from anywhere to the Stockholm branch, connect to nextcloud and share files with anyone who used nextcloud. If you are in the Stockholm branch, you can connect to the Wi-Fi with FreeRadius and then access Nextcloud.
+
+
+  
  
 
 ## Intrusion Detection System - Snort
