@@ -274,7 +274,7 @@ once we do that, the London router which normally has an IP of 192.168.10.1 ( si
 
 ## INTRUSION DETECTION SYSTEM - SNORT
 
-Intrusion Detection System (IDS) is deployed using the open source IDS software named Snort. 
+Intrusion Detection System (IDS) is deployed using the open source IDS software named [Snort](https://www.snort.org). 
 
 ### Docker image
 
