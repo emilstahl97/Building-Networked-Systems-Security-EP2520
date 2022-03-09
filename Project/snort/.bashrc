@@ -100,5 +100,5 @@ fi
 
 
 #aliases
-alias testsnort="snort -T -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp1s0"
-alias runsnort="snort -A console -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp1s0"
+alias testsnort="snort -T -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp2s0"
+alias runsnort="snort -A console -c /root/Building-Networked-Systems-Security-EP2520/Project/snort/etc/snort.conf -i enp2s0"
