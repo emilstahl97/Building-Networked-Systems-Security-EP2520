@@ -1,11 +1,26 @@
 # ACME Network Setup
 
-##### Table of Contents  
-[Headers](#headers)  
-[Emphasis](#emphasis)  
-...snip...    
-<a name="headers"/>
-## Headers
+- [ACME Network Setup](#acme-network-setup)
+  * [SETTING UP THE ROUTER WITH DD-WRT:](#setting-up-the-router-with-dd-wrt-)
+- [THOMAS ADD STUFF HERE](#thomas-add-stuff-here)
+  * [DOCKER-ENGINE AND DOCKER COMPOSE](#docker-engine-and-docker-compose)
+  * [FREEIPA](#freeipa)
+  * [NEXTCLOUD](#nextcloud)
+- [FreeRadius](#freeradius)
+  * [OpenVPN Access Server](#openvpn-access-server)
+  * [Internal VPN](#internal-vpn)
+- [THOMAS ADD STUFF HERE](#thomas-add-stuff-here-1)
+  * [Intrusion Detection System - Snort](#intrusion-detection-system---snort)
+    + [Docker image](#docker-image)
+    + [Snort configuration](#snort-configuration)
+      - [N O T E:](#n-o-t-e-)
+    + [Applied rules](#applied-rules)
+    + [Test Snort configuration](#test-snort-configuration)
+    + [Run Snort](#run-snort)
+  * [Commmon alerts](#commmon-alerts)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 For more clear explanation, we consider that our internal network where everything is set up is the **192.168.9.0/24** network and the IP of the server for the containers is **192.168.9.10**. Also, the FreeIPA server, i.e the container that is going to run on the host pc, is going to be named **server.final.test** and the domain is of course final.test. The host machine runs UBUNTU 20.4 but since we run almost everything in containers, few things should change in the configurations below, which will be noted if there is a difference in other Unix distributions.
 
