@@ -118,13 +118,37 @@ DNS=1.1.1.1 #pick any DNS server this is the one I picked #FallbackDNS=
 DNSStubListener=no
 #ReadEtcHosts=yes
 ```
-Create a symbolic link with the command ```bash sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf ``` and reboot your system. 
+Create a symbolic link with the command 
+```bash sudo 
+ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf 
+``` 
+and reboot your system. 
 
-Now the command ```bash sudo lsof -I :53``` should have no outputs and the docker command will run. For other distributions follow other similar guides. Also, for FreeIPA to run in other distributions you might need to disable SELinux.
+Now the command 
+```bash 
+sudo lsof -I :53
+``` 
+should have no outputs and the docker command will run. For other distributions follow other similar guides. Also, for FreeIPA to run in other distributions you might need to disable SELinux.
 
-If all is done properly, you should be able to type to your browser the 192.168.9.10 and go to the FreeIPA web UI, where you can connect with ```bash username admin``` and ```bash password Secret123```
+If all is done properly, you should be able to type to your browser the 192.168.9.10 and go to the FreeIPA web UI, where you can connect with 
+```bash 
+username admin
+``` 
+and 
+```bash 
+password Secret123
+```
 
-You can easily users from the web UI with a certain password. Then log out and try to log in with that user. The system will immediately say that the password has expired, and you need to create a new password for the user. That guarantees that in real life, when the user tries to log in for the first time, the admin won’t know the final password of the user. We create a user with ```bash username alex``` and ```bash password password``` to test things out. Also, through the webui you can easily enable two-factor authentication (2FA) for the users. You need to log in as a user first and click on actions in the user profile and add otp token. Pick the TOTP and use the freeOTP app in your phone and connect the user with the OTP. Then log in as an admin and enable two factor authentication (password+OTP ) in the user settings. 2FA should run now if you want to use it.
+You can easily users from the web UI with a certain password. Then log out and try to log in with that user. The system will immediately say that the password has expired, and you need to create a new password for the user. That guarantees that in real life, when the user tries to log in for the first time, the admin won’t know the final password of the user. We create a user with 
+```bash 
+username alex
+``` 
+and 
+```bash 
+password password
+``` 
+
+to test things out. Also, through the webui you can easily enable two-factor authentication (2FA) for the users. You need to log in as a user first and click on actions in the user profile and add otp token. Pick the TOTP and use the freeOTP app in your phone and connect the user with the OTP. Then log in as an admin and enable two factor authentication (password+OTP ) in the user settings. 2FA should run now if you want to use it.
  
  ## NEXTCLOUD
  
