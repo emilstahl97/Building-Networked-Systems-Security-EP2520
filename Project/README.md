@@ -89,22 +89,18 @@ Now that we have installed docker, we need to set up FreeIpa and Nextcloud. Befo
 
 ( not really needed but just in case for later )
 
-Also, if we consider that our PWD is ```bash 
-/home/myuser
-``` 
-we create a new directory for the freeipa volumes with the command
-```bash 
-/var/lib/ipa-data
-```
+Also, if we consider that our PWD is **/home/myuser**, we create a new directory for the freeipa volumes with the command **/var/lib/ipa-data**.
 
 Now, we run the command
 
-```bash Docker run -h server.final.test --name my-group-server -p 53:53/udp -p 53:53 -p 80:80 -p 443:443 -p 389:389 -p 636:636 -p 88:88 -p 464:464 -p 88:88/udp -p 464:464/udp -p 123:123/udp -v /sys/fs/cgroup:/fs/cgroup:ro -v /var/lib/ipa-data:/data:Z -e PASSWORD=Secret123 –sysctl net.ipv6.conf.all.disable_ipv6=0 freeipa/freeipa-server:centros-8-4.8.7 ipa-server-install -U -r FINAL.TEST --no-ntp```
+```bash 
+Docker run -h server.final.test --name my-group-server -p 53:53/udp -p 53:53 -p 80:80 -p 443:443 -p 389:389 -p 636:636 -p 88:88 -p 464:464 -p 88:88/udp -p 464:464/udp -p 123:123/udp -v /sys/fs/cgroup:/fs/cgroup:ro -v /var/lib/ipa-data:/data:Z -e PASSWORD=Secret123 –sysctl net.ipv6.conf.all.disable_ipv6=0 freeipa/freeipa-server:centros-8-4.8.7 ipa-server-install -U -r FINAL.TEST --no-ntp
+```
 
 There might be a problem of port 53 already being used due to DNS and the docker command won’t run. To fix that in Ubuntu, do the following: 
 
 Check firstly if that’s the case with the command ```bash sudo lsof -i :53```. If that has an output, your port is being used.
-You then need to edit the ```bash /etc/system/resolved.conf``` file to the following version:
+You then need to edit the /etc/system/resolved.conf file to the following version:
 
 ```bash
 [Resolve]
