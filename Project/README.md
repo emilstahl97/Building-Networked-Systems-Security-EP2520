@@ -74,15 +74,19 @@ docker-compose --version
 
 ## FREEIPA
 
-Now that we have installed docker, we need to set up FreeIpa and Nextcloud. Before we do that though, we need to configure some details. First, in the ```bash /etc/hosts``` file we need to add the following entries:
+Now that we have installed docker, we need to set up FreeIpa and Nextcloud. Before we do that though, we need to configure some details. First, in the /etc/hosts file we need to add the following entries:
 
 ```bash 192.168.9.10 server.final.test ipa-server
 ```
+
 ```bash 172.17.0.1 host.docker.internal
 ``` 
+
 (needed to have communication with containers in Linux distribs)
+
 ```bash 192.168.9.1 <name-of-your-router>
 ``` 
+
 ( not really needed but just in case for later )
 
 Also, if we consider that our PWD is ```bash 
