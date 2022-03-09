@@ -115,6 +115,50 @@ In the base group tree add cn=groups,cn=accounts,dc=final,dc=test
 
 In the group member association pick uniqueMember and in the special attributes type mail in the email field and cn in the user home folder naming rule box. If you test the configuration it should be valid and now theoretically you should be able to log in with alex/password in nextcloud. Since we need to access nextcloud from other pcs as well, we need to edit the trusted domains. Find the config.php file ( in our case its in /var/lib/docker/volumes/<volume-of-your-nextcloud>/_data/config and edit the trusted domains. It should already have by default the localhost:9000 so add the PRIVATE IP OF YOUR HOST MACHINE, i.e 192.168.9.10 in our case. Now, you can browse from other pcs in the private network and go to 192.168.9.10:9000 and you should be allowed to log in.
 
+# FreeRadius
+ 
+To install free radius, do this first:
+
+```bash
+apt install freeradius freeradius-ldap freeradius-utils
+```
+ 
+Then edit your /etc/freeradius/3.0/clients.conf file and add
+
+```bash
+client server.final.test { 
+   ipaddr= 192.168.9.10 secret = somesecret
+}
+ 
+Client dockernet { 
+   ipaddr = 172.17.0.0/16 Secret = somesecret2
+}
+ 
+Client myaccesspoint1 {
+   Ipaddr = 192.168.9.1 Somesecret = somesecret3 
+ }
+ 
+```
+ 
+And save the file. Now go to /etc/freeradius/3.0/certs and run the command make. This will create some snake-oil certificates which shouldn’t be used in production but for this demo we are good to go. Normally, we would edit the various files here to create our own CA,certificates and public and private keys. Run this command to enable eap authentication as well 
+ 
+```bash
+ln -s /etc/freeradius/3.0/mods-available/eap /etc/freeradius/3.0/mods-enabled/
+```
+ 
+Freeradius should run and show ready to process requests. Now, we need to add users to authenticate, so whenever we add a user in FreeIPA, we need to add him here as well, so go to the /etc/freeradius/3.0/users file and add in the beginning of the file add
+ 
+Now, run systemctl stop freeradius.service and rerun it with freeradius -X
+ 
+Freeradius should run and show ready to process requests. Now, we need to add users to authenticate, so whenever we add a user in FreeIPA, we need to add him here as well, so go to the /etc/freeradius/3.0/users file and add in the beginning of the file add
+ 
+```bash
+<username> Cleartext-Password := “<the-password>”
+```
+Then stop the service and rerun it as before. If the router is set up properly and you followed the instructions, you should be able to connect to the wifi with your username and password.
+ 
+
+ 
  
 
 ## Intrusion Detection System - Snort
