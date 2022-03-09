@@ -1,3 +1,11 @@
+# ACME Network Setup
+
+For more clear explanation, we consider that our internal network where everything is set up is the **192.168.9.0/24** network and the IP of the server for the containers is **192.168.9.10**. Also, the FreeIPA server, i.e the container that is going to run on the host pc, is going to be named **server.final.test** and the domain is of course final.test. The host machine runs UBUNTU 20.4 but since we run almost everything in containers, few things should change in the configurations below, which will be noted if there is a difference in other Unix distributions.
+
+## SETTING UP THE ROUTER WITH DD-WRT:
+
+We flush the routers and we install dd+wrt. THOMAS ADD STUFF HERE
+After we set everything up and change the networks provided, we need to go to **services->wireless** security and pick **wpa2-eap**, add the IP 1**92.168.9.10** in the FreeRadius one (leave the default port and default encryption method) and for the secret use.
 
 
 ## Intrusion Detection System - Snort
