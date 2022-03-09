@@ -48,6 +48,27 @@ And to confirm you should get a result with the command:
 docker-compose --version
 ```
 
+## FREEIPA
+
+Now that we have installed docker, we need to set up FreeIpa and Nextcloud. Before we do that though, we need to configure some details. First, in the ```bash /etc/hosts``` file we need to add the following entries:
+
+```bash 192.168.9.10 server.final.test ipa-server```
+```bash 172.17.0.1 host.docker.internal``` (needed to have communication with containers in Linux distribs)
+```bash 192.168.9.1 <name-of-your-router>``` ( not really needed but just in case for later )
+
+Also, if we consider that our PWD is ```bash /home/myuser``` we create a new directory for the freeipa volumes with the command
+```bash /var/lib/ipa-data```
+
+Now, we run the command
+
+```bash Docker run -h server.final.test --name my-group-server -p 53:53/udp -p 53:53 -p 80:80 -p 443:443 -p 389:389 -p 636:636 -p 88:88 -p 464:464 -p 88:88/udp -p 464:464/udp -p 123:123/udp -v /sys/fs/cgroup:/fs/cgroup:ro -v /var/lib/ipa-data:/data:Z -e PASSWORD=Secret123 –sysctl net.ipv6.conf.all.disable_ipv6=0 freeipa/freeipa-server:centros-8-4.8.7 ipa-server-install -U -r FINAL.TEST --no-ntp```
+
+There might be a problem of port 53 already being used due to DNS and the docker command won’t run. To fix that in Ubuntu, do the following: 
+
+Check firstly if that’s the case with the command ```bash sudo lsof -i :53```
+
+ 
+
 
 ## Intrusion Detection System - Snort
 
