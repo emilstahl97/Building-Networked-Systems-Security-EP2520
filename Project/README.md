@@ -5,7 +5,7 @@ For more clear explanation, we consider that our internal network where everythi
 ## SETTING UP THE ROUTER WITH DD-WRT:
 
 We flush the routers and we install dd+wrt. THOMAS ADD STUFF HERE
-After we set everything up and change the networks provided, we need to go to **services->wireless** security and pick **wpa2-eap**, add the IP 1**92.168.9.10** in the FreeRadius one (leave the default port and default encryption method) and for the secret use.
+After we set everything up and change the networks provided, we need to go to **services->wireless** security and pick **wpa2-eap**, add the IP **192.168.9.10** in the FreeRadius one (leave the default port and default encryption method) and for the secret use.
 
 ## DOCKER-ENGINE AND DOCKER COMPOSE
 
@@ -184,7 +184,13 @@ Then go to VPN settings and in the routing part, add in the box the address of y
 
 Now, you can log out as admin, go to http://192.168.9.10 and here you can connect as a user from freeipa. Log in and download the file that it has for you. Now, to connect to the vpn from your phone for example, send this file to your phone ( with a mail for example), download the OpenVPN connect command and import that file there. Use your password ( and OTP if you have 2FA on) and you should be able to connect to the VPN. With all these done, you can connect from anywhere to the Stockholm branch, connect to nextcloud and share files with anyone who used nextcloud. If you are in the Stockholm branch, you can connect to the Wi-Fi with FreeRadius and then access Nextcloud.
 
-
+## Internal VPN
+ 
+In order to be able to connect through the London branch to Stockholm, we need to create an internal vpn from London to Stockholm. 
+ 
+# THOMAS ADD STUFF HERE 
+ 
+once we do that, the London router which normally has an IP of 192.168.10.1 ( since the London network is 192.168.10.0/24 ) , will have an IP of 192.168.9.something. Note that IP and add a new client in the freeradius clients.conf file as before with a shared secret of somesecret4. Also, in the router, go to wireless security as before and add the radius ip ( 192.168.9.10 ) and somesecret4 in the secret box. Now, if you set it up appropriately, users in London can connect to the London wifi with freeradius authentication from Stockholm!
   
  
 
