@@ -137,7 +137,7 @@ In the base group tree add cn=groups,cn=accounts,dc=final,dc=test
 
 In the group member association pick uniqueMember and in the special attributes type mail in the email field and cn in the user home folder naming rule box. If you test the configuration it should be valid and now theoretically you should be able to log in with alex/password in nextcloud. Since we need to access nextcloud from other pcs as well, we need to edit the trusted domains. Find the config.php file ( in our case its in /var/lib/docker/volumes/<volume-of-your-nextcloud>/_data/config and edit the trusted domains. It should already have by default the localhost:9000 so add the PRIVATE IP OF YOUR HOST MACHINE, i.e 192.168.9.10 in our case. Now, you can browse from other pcs in the private network and go to 192.168.9.10:9000 and you should be allowed to log in.
 
-# FreeRadius
+## FreeRadius
  
 To install free radius, do this first:
 
