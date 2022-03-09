@@ -5,7 +5,7 @@
   * [DOCKER-ENGINE AND DOCKER COMPOSE](#docker-engine-and-docker-compose)
   * [FREEIPA](#freeipa)
   * [NEXTCLOUD](#nextcloud)
-- [FreeRadius](#freeradius)
+  * [FreeRadius](#freeradius)
   * [OpenVPN Access Server](#openvpn-access-server)
   * [Internal VPN](#internal-vpn)
   * [Intrusion Detection System - Snort](#intrusion-detection-system---snort)
@@ -14,7 +14,7 @@
     + [Applied rules](#applied-rules)
     + [Test Snort configuration](#test-snort-configuration)
     + [Run Snort](#run-snort)
-  * [Commmon alerts](#commmon-alerts)
+    + [Commmon alerts](#commmon-alerts)
 
 
 For more clear explanation, we consider that our internal network where everything is set up is the **192.168.9.0/24** network and the IP of the server for the containers is **192.168.9.10**. Also, the FreeIPA server, i.e the container that is going to run on the host pc, is going to be named **server.final.test** and the domain is of course final.test. The host machine runs UBUNTU 20.4 but since we run almost everything in containers, few things should change in the configurations below, which will be noted if there is a difference in other Unix distributions.
