@@ -6,4 +6,4 @@
 * change interface at bottom of file
 * source .bashrc
 * runsnort 
-* update: To make snort run correctly atm, set EXTERNAL_NET equal to any on line 50 in snort.conf
+* update: To make snort run correctly atm, set EXTERNAL_NET equal to **any** on line 50 in snort.conf
