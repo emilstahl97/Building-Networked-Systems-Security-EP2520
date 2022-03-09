@@ -287,7 +287,7 @@ where --net-host is needed to analyze traffic on the host machines interfaces.
 
 ### Snort configuration 
 
-Once in the container, the entrypoint is in the ./Snort directory where two directories are present, ./etc and ./rules. 
+Once in the container, the entrypoint is in the ./Snort directory where two directories are present, [./etc](https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/etc) and [./rules].(https://github.com/emilstahl97/Building-Networked-Systems-Security-EP2520/tree/main/Project/snort/rules) 
 In ./etc the snort.conf is located where the user can specify the subnet of which to analyze traffic. This is specified at line 45 and is predefined to 
 ```bash
 ipvar HOME_NET 192.168.9.0/24
