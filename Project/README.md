@@ -154,28 +154,44 @@ to test things out. Also, through the webui you can easily enable two-factor aut
  
 Nextcloud only needs one command to set it up in container, which is
 
- ```bash
+```bash
 sudo docker run --name my-nextcloud-container -p 9000:80 nextcloud
  ```
-Now, when you go to localhost:9000 ( don’t go to 192.168.9.10:9000, it works but it gives annoying warnings all the time until we have that fixed later on ) you can create an admin account for nextcloud, in our case we used admin/test as a username/password. 
+Now, when you go to **localhost:9000** ( don’t go to **192.168.9.10:9000**, it works but it gives annoying warnings all the time until we have that fixed later on ) you can create an admin account for nextcloud, in our case we used admin/test as a username/password. 
 
 Then, once in, go to your profile, click **Apps** and **enable LDAP**. Then go to **settings**, pick **LDAP/AD integration** and add the following:
 
 In the server tab put the IP of **172.17.0.1** in the IP box and the port 389 in the next box. Below put
 uid=admin,cn=users,cn=accounts, dc=final,dc=test and below that put the password Secret123 in the final bottom box put 
 
+```bash
 dc=final,dc=test
+```
 
-In the users tab edit the LDAP query to (|(objectclass=*))
-In the login attributes edit the LDAP query to (&(|(objectclass=*))(uid=%uid)) 
-In the group tab edit the LDAP query to (|(cn=ipausers))
+* In the users tab edit the LDAP query to 
+```bash
+(|(objectclass=*))
+```
+* In the login attributes edit the LDAP query to 
+```bash
+(&(|(objectclass=*))(uid=%uid)) 
+```
+* In the group tab edit the LDAP query to 
+```bash
+(|(cn=ipausers))
+```
 
-In the advanced options, check that the configuration active box is checked, in directory settings in
-the base user Tree add cn=users,cn=accounts,dc=final,dc=te
+In the advanced options, check that the configuration active box is checked, in directory settings in the base user tree add 
+```bash
+cn=users,cn=accounts,dc=final,dc=te
+```
 
-In the base group tree add cn=groups,cn=accounts,dc=final,dc=test
+In the base group tree add 
+```bash
+cn=groups,cn=accounts,dc=final,dc=test
+```
 
-In the group member association pick uniqueMember and in the special attributes type mail in the email field and cn in the user home folder naming rule box. If you test the configuration it should be valid and now theoretically you should be able to log in with alex/password in nextcloud. Since we need to access nextcloud from other pcs as well, we need to edit the trusted domains. Find the config.php file ( in our case its in /var/lib/docker/volumes/<volume-of-your-nextcloud>/_data/config and edit the trusted domains. It should already have by default the localhost:9000 so add the PRIVATE IP OF YOUR HOST MACHINE, i.e 192.168.9.10 in our case. Now, you can browse from other pcs in the private network and go to 192.168.9.10:9000 and you should be allowed to log in.
+In the group member association pick uniqueMember and in the special attributes type mail in the email field and cn in the user home folder naming rule box. If you test the configuration it should be valid and now theoretically you should be able to log in with alex/password in Nextcloud. Since we need to access Nextcloud from other pcs as well, we need to edit the trusted domains. Find the config.php file ( in our case its in /var/lib/docker/volumes/<volume-of-your-nextcloud>/_data/config) and edit the trusted domains. It should already have by default the **localhost:9000** so add the PRIVATE IP OF YOUR HOST MACHINE, i.e **192.168.9.10** in our case. Now, you can browse from other pcs in the private network and go to **192.168.9.10:9000** and you should be allowed to log in.
 
 ## FreeRadius
  
