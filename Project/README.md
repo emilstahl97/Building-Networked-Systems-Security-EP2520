@@ -27,8 +27,26 @@ $ sudo apt-get update
 
 $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 ```
+These commands should have docker engine running: 
+Confirm with
+```bash 
+$ docker run hello-world
+```
 
+To install docker-compose:
+```bash 
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker- compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
+$ sudo chmod +x /usr/local/bin/docker-compose
+
+$sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+And to confirm you should get a result with the command:
+
+```bash
+docker-compose --version
+```
 
 
 ## Intrusion Detection System - Snort
