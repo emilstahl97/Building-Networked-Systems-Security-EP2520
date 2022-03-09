@@ -99,7 +99,11 @@ docker run -h server.final.test --name my-group-server -p 53:53/udp -p 53:53 -p 
 
 There might be a problem of port 53 already being used due to DNS and the docker command won’t run. To fix that in Ubuntu, do the following: 
 
-Check firstly if that’s the case with the command ```bash sudo lsof -i :53```. If that has an output, your port is being used.
+Check firstly if that’s the case with the command: 
+```bash 
+sudo lsof -i :53
+```
+If that has an output, your port is being used.
 You then need to edit the /etc/system/resolved.conf file to the following version:
 
 ```bash
