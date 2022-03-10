@@ -25,9 +25,9 @@ For more clear explanation, we consider that our internal network where everythi
 
 ## SETTING UP THE ROUTER WITH DD-WRT:
 
-We flush the routers and we install dd+wrt. 
+We flash the router with DD-WRT. For this we used the recovery tool provided by Asus for their router RT-AC68U (The tool can be downloaded [here](https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RTAC68U/HelpDesk_Download/) and only work on Windows. We put the router in recovery mode. We connect to the router with a ethernet cable and set a static IP for our computer in the configuration panel. Then we launch the Asus' tool and when prompted add the DD-WRT's firmare for the Asus RT-AC68U. After we reboot the routers and DD-WRT is installed.
 
-# THOMAS ADD STUFF HERE
+Then we did the default configuration and we changed the IP adresses of the two subnets as defined in the previous figure.
 
 After we set everything up and change the networks provided, we need to go to **services->wireless** security and pick **wpa2-eap**, add the IP **192.168.9.10** in the FreeRadius one (leave the default port and default encryption method) and for the secret use.
 
@@ -265,10 +265,12 @@ Now, you can log out as admin, go to http://192.168.9.10 and here you can connec
 ## Internal VPN
  
 In order to be able to connect through the London branch to Stockholm, we need to create an internal vpn from London to Stockholm. 
+
+ For this, the Stockholm router runs an OpenVPN server and the London router and OpenVPN client. This server and client are included in the DD-WRT firmware.
  
-# THOMAS ADD STUFF HERE 
+ For the server, we connect to the router GUI and go to **service->VPN**. Then we enable the OpenVPN server. We configure the VPN server to start when the router is on.
  
-once we do that, the London router which normally has an IP of 192.168.10.1 ( since the London network is 192.168.10.0/24 ) , will have an IP of 192.168.9.something. Note that IP and add a new client in the freeradius clients.conf file as before with a shared secret of somesecret4. Also, in the router, go to wireless security as before and add the radius ip ( 192.168.9.10 ) and somesecret4 in the secret box. Now, if you set it up appropriately, users in London can connect to the London wifi with freeradius authentication from Stockholm!
+Once we do that, the London router which normally has an IP of 192.168.10.1 ( since the London network is 192.168.10.0/24 ) , will have an IP of 192.168.9.something. Note that IP and add a new client in the freeradius clients.conf file as before with a shared secret of somesecret4. Also, in the router, go to wireless security as before and add the radius ip ( 192.168.9.10 ) and somesecret4 in the secret box. Now, if you set it up appropriately, users in London can connect to the London wifi with freeradius authentication from Stockholm!
   
  
 
