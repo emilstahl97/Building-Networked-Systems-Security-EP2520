@@ -279,7 +279,7 @@ In order to be able to connect through the London branch to Stockholm, we need t
  
 Step by step configuration of the routers for the VPN can be found [here](https://forum.dd-wrt.com/phpBB2/viewtopic.php?t=318795) (you need to be logged in to acces the pdf).
  
-Once we do that, the London router which normally has an IP of 192.168.10.1 ( since the London network is 192.168.10.0/24 ) , will have an IP of 192.168.9.something. Note that IP and add a new client in the freeradius clients.conf file as before with a shared secret of somesecret4. Also, in the router, go to wireless security as before and add the radius ip ( 192.168.9.10 ) and somesecret4 in the secret box. Now, if you set it up appropriately, users in London can connect to the London wifi with freeradius authentication from Stockholm!
+Once we do that, the London router is connected securely to the Stockholm router via an OpenVPN tunnel. This means that all the traffic from London that need to go to Stockholm is going through the secure tunnel. Now, if you set it up appropriately, users in London can connect to the London wifi with freeradius authentication from Stockholm!
   
  
 
