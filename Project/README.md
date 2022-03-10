@@ -1,14 +1,14 @@
 # ACME Network Setup
 
 - [ACME Network Setup](#acme-network-setup)
-  * [SETTING UP THE ROUTER WITH DD-WRT:](#setting-up-the-router-with-dd-wrt)
+  * [SETTING UP THE ROUTER WITH DD-WRT:](#setting-up-the-router-with-dd-wrt-)
   * [DOCKER-ENGINE AND DOCKER COMPOSE](#docker-engine-and-docker-compose)
   * [FREEIPA](#freeipa)
   * [NEXTCLOUD](#nextcloud)
   * [FreeRadius](#freeradius)
   * [OpenVPN Access Server](#openvpn-access-server)
   * [Internal VPN](#internal-vpn)
-  * [Intrusion Detection System - Snort](#intrusion-detection-system---snort)
+  * [INTRUSION DETECTION SYSTEM - SNORT](#intrusion-detection-system---snort)
     + [Docker image](#docker-image)
     + [Snort configuration](#snort-configuration)
     + [Applied rules](#applied-rules)
