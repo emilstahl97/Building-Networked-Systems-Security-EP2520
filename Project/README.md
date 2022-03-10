@@ -265,6 +265,7 @@ Then go to VPN settings and in the routing part, add in the box the address of y
 
 Now, you can log out as admin, go to http://192.168.9.10 and here you can connect as a user from freeipa. Log in and download the file that it has for you. Now, to connect to the vpn from your phone for example, send this file to your phone ( with a mail for example), download the OpenVPN connect command and import that file there. Use your password ( and OTP if you have 2FA on) and you should be able to connect to the VPN. With all these done, you can connect from anywhere to the Stockholm branch, connect to nextcloud and share files with anyone who used nextcloud. If you are in the Stockholm branch, you can connect to the Wi-Fi with FreeRadius and then access Nextcloud.
 
+ 
 ## Internal VPN
  
 In order to be able to connect through the London branch to Stockholm, we need to create an internal vpn from London to Stockholm. 
