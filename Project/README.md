@@ -1,7 +1,7 @@
 # ACME Network Setup
 
 - [ACME Network Setup](#acme-network-setup)
-  * [SETTING UP THE ROUTER WITH DD-WRT:](#setting-up-the-router-with-dd-wrt-)
+  * [SETTING UP THE ROUTER WITH DD-WRT:](#setting-up-the-router-with-dd-wrt)
   * [DOCKER-ENGINE AND DOCKER COMPOSE](#docker-engine-and-docker-compose)
   * [FREEIPA](#freeipa)
   * [NEXTCLOUD](#nextcloud)
@@ -25,7 +25,7 @@ For more clear explanation, we consider that our internal network where everythi
 
 ## SETTING UP THE ROUTER WITH DD-WRT:
 
-We flash the router with DD-WRT. For this we used the recovery tool provided by Asus for their router RT-AC68U (The tool can be downloaded [here](https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RTAC68U/HelpDesk_Download/) and only work on Windows. We put the router in recovery mode. We connect to the router with a ethernet cable and set a static IP for our computer in the configuration panel. Then we launch the Asus' tool and when prompted add the DD-WRT's firmare for the Asus RT-AC68U. After we reboot the routers and DD-WRT is installed.
+We flash the router with DD-WRT. For this we used the recovery tool provided by Asus for their router RT-AC68U (The tool can be downloaded [here](https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RTAC68U/HelpDesk_Download/) and only work on Windows). We put the router in recovery mode. We connect to the router with a ethernet cable and set a static IP for our computer in the configuration panel. Then we launch the Asus' tool and when prompted add the DD-WRT's firmare for the Asus RT-AC68U. After we reboot the routers and DD-WRT is installed.
 
 Then we did the default configuration and we changed the IP adresses of the two subnets as defined in the previous figure.
 
@@ -268,7 +268,13 @@ In order to be able to connect through the London branch to Stockholm, we need t
 
  For this, the Stockholm router runs an OpenVPN server and the London router and OpenVPN client. This server and client are included in the DD-WRT firmware.
  
- For the server, we connect to the router GUI and go to **service->VPN**. Then we enable the OpenVPN server. We configure the VPN server to start when the router is on.
+ For the server, we connect to the router GUI and go to **Services->VPN**. Then we enable the OpenVPN server. We configure the VPN server to start when the router is on. And the VPN is run on a tunnel mode to have two separate subnets. We also set all the ciphers' algorithm used for the router. We also add a firewall rule to enable the communication via the tunnel to the LAN network.
+ 
+ For the client side, we connect to the router GUI and go to **Services->VPN**. Then we enable the OpenVPN client, set the IP address to the public IP address of the Stockholm router and all the other parameter equal to what was set on the server side. In the additional configuration field we add the rule ***ADD THE CODE HERE*** to forward the traffic to 192.168.9.X to the correct destination via the tunnel.
+ 
+ Then we configure the certificates for the client and the server. For this we generate a key pair and then the CA from FreeIPA provide the certificates via a CSR. The private key and the certificate of the server (resp. the client) are added to the corresponding field in the server (resp. client) GUI. We also add the certificate of the CA on both the server and the client and finally add a Diffie Hellman Parameters in the dh.pem field.
+ 
+Step by step configuration of the routers for the VPN can be found [here](https://forum.dd-wrt.com/phpBB2/viewtopic.php?t=318795) (you need to be logged in to acces the pdf).
  
 Once we do that, the London router which normally has an IP of 192.168.10.1 ( since the London network is 192.168.10.0/24 ) , will have an IP of 192.168.9.something. Note that IP and add a new client in the freeradius clients.conf file as before with a shared secret of somesecret4. Also, in the router, go to wireless security as before and add the radius ip ( 192.168.9.10 ) and somesecret4 in the secret box. Now, if you set it up appropriately, users in London can connect to the London wifi with freeradius authentication from Stockholm!
   
