@@ -28,3 +28,5 @@ alert tcp any any -> $HOME_NET 22 (msg:"Potential SSH Brute Force Attack"; flow:
 
 # --- Pass VPN traffic through without logging ---
 pass udp any any -> $HOME_NET 1194 (msg:"OpenVPN UDP connection attempt"; sid:1000010; rev:1;)
+
+pass udp any any -> $HOME_NET 25555 (msg:"OpenVPN UDP connection attempt"; sid:1000011; rev:1;)
